@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap')
+    
+@mixin flex-row
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+
+@mixin flex-column
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    
+body
+    background-color: #C2D3CD
+    color: #32292F
+    font-family: 'Roboto', sans-serif
+
+
+h1,h2,h3,h4,h5,h6 
+    font-size: 24px
+    font-weight: 600
+    margin: 0
+
+p
+    margin: 0
+
+button 
+    border: none
+    width: 120px
+    height: 30px
+    margin-top: 10px
+    border-radius: 10px
+    background-color: #dae9e4
+
+.search
+    @include flex-column
+
+.container
+    @include flex-column
+    width: 1200px
+    margin: 0 auto
+
+.search__input
+    width: 200px
+    margin-top: 15px
+
+.search__button
+    width: 200px
+    height: 25px
+
+.result
+    @include flex-row
+    width: 100%
+    justify-content: space-around
+    margin-top: 15px
+
+.result__item
+    @include flex-row
+    justify-content: space-evenly
+    width: 45%
+    height: 400px
+    margin-bottom: 15px
+    align-items: center
+    background-color: #bda2ab
+
+    img
+        width: 50%
+        height: 385px
+
+    div
+        @include flex-column
+        align-items: center
+        width: 40%
+
+        h3
+            text-align: center
+        
+        p
+            margin-top: 10px
+
+.film 
+    flex-direction: row
+    justify-content: space-evenly
+    font-size: 18px
+
+    img
+        width: 500px
+        height: 600px
+    
+    p
+        margin-bottom: 10px
+
+.film__info
+    display: flex
+    flex-direction: column
+    width: 500px
+
+.film__info__plot
+    font-size: 16px
+    color: #000000
+
+.film__info__score
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 10px 130px 0 130px
+    background-color: #f9f9f9
+
+    p
+        display: inline
+    
+    span
+        border-radius: 30px
+        background-color: #F3A712
+        padding: 3px
