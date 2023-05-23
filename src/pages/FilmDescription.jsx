@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.sass';
 
@@ -10,7 +10,6 @@ const FilmDescription = () => {
         const response = await fetch(`${import.meta.env.VITE_API_URL}?apikey=${import.meta.env.VITE_API_KEY}&i=${params.id}`);
         const data = await response.json();
         setFilm(data);
-        console.log(data)
     };
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.sass';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,6 @@ const FilmSearch = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    const [error, setError] = useState('');
 
     const handleSearch = async (title) => {
         try {
@@ -15,14 +14,14 @@ const FilmSearch = () => {
             const newResults = data.Search || [];
             setSearchResults(newResults);
         } catch (error) {
-            setError(`An error occurred: ${error}`);
             console.error(error);
         }
     };
 
     useEffect(() => {
-        if (localStorage.getItem('film')) {
-            handleSearch(localStorage.getItem('film'));
+        const storage = sessionStorage.getItem('film');
+        if (storage) {
+            handleSearch(storage);
         }
     }, []);
 
@@ -30,14 +29,14 @@ const FilmSearch = () => {
         <div className='container'>
             <h1>Введите название фильма</h1>
             <div className='search'>
-                <input type='text' className='search__input' value={title} onChange={e => setTitle(e.target.value)} />
-                <button type='submit' className='search__button' onClick={() => { handleSearch(title); localStorage.setItem('film', title) }}>Найти</button>
+                <input type='text' className='search__input' value={title} onChange={e => setTitle(e.target.value)} placeholder='Введите название'/>
+                <button type='submit' className='search__button' onClick={() => { handleSearch(title); sessionStorage.setItem('film', title) }}>Найти</button>
             </div>
 
             <div className="result">
                 {
                     (searchResults.length == 0) ?
-                        <div>Фильм не найден!</div>
+                        (sessionStorage.getItem('film') != null) ? <div>Фильм не найден!</div> : <div></div>
                         :
                         searchResults.map((movie, index) => (
                             <div key={`${movie.imdbID}_${index}`} className='result__item'>
